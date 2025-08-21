@@ -17,7 +17,7 @@ namespace TacheConsole
 
         public Connexion()
         {
-            ConnexionString = "";
+            ConnexionString = "aze";
         }
 
         protected void DbConnecter()

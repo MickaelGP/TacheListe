@@ -58,4 +58,4 @@ _ReSharper*/
 # Ignorer les fichiers de cache de MightyMoose
 *.mutationtest.xml
 "appsettings.json" 
-"Connexion.cs"
+.Connexion.cs

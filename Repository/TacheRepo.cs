@@ -1,17 +1,11 @@
 ﻿using Microsoft.Data.SqlClient;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TacheConsole.Interfaces;
 using TacheConsole.Models;
 
 namespace TacheConsole.Repository
 {
-    public class TacheRepo : Connexion
+    public class TacheRepo : Connexion, ITacheRepo
     {
         public int DeleteTask(int unId)
         {
@@ -142,7 +136,7 @@ namespace TacheConsole.Repository
             return resultat;
         }
 
-        public int UpdateTask(int unId, DateTime unDate)
+        public int UpdateTask(Taches unTache)
         {
             DbConnecter();
 
@@ -153,8 +147,8 @@ namespace TacheConsole.Repository
             SqlParameter tacheTerminer = cmd.Parameters.Add("@tacheTerminer", SqlDbType.DateTime);
             SqlParameter tacheId = cmd.Parameters.Add("@tacheId", SqlDbType.Int);
 
-            tacheTerminer.Value = unDate;
-            tacheId.Value = unId;
+            tacheTerminer.Value = unTache.tacheTerminer;
+            tacheId.Value = unTache.tacheId;
 
             int resultat = cmd.ExecuteNonQuery();
 

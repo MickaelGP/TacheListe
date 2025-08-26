@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TacheConsole.Metier;
+﻿using TacheConsole.Interfaces;
 using TacheConsole.Models;
 
 namespace TacheConsole.Controller
 {
     public class TacheController
     {
-        private TacheMetier _metier = new TacheMetier();
+        private readonly ICrud _metier;
+
+        public TacheController(ICrud metier)
+        {
+            _metier = metier;
+        }
 
         public void CreateTache()
         {
@@ -80,7 +80,12 @@ namespace TacheConsole.Controller
             }
             Console.WriteLine("Inscrivez l'id de la tâche à marquer comme terminer :");
             int idTache = Convert.ToInt32(Console.ReadLine());
-            int resultat = _metier.UpdateTask(idTache);
+            Taches unTache = new Taches
+            {
+                tacheId = idTache,
+                tacheTerminer = DateTime.Now
+            };
+            int resultat = _metier.UpdateTask(unTache);
             if (resultat == 0)
             {
                 Console.WriteLine("Une erreur est survenue !");

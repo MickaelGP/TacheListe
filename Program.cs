@@ -1,14 +1,21 @@
 ﻿using TacheConsole.Controller;
+using TacheConsole.Interfaces;
+using TacheConsole.Metier;
 using TacheConsole.Models;
-
+using TacheConsole.Repository;
 namespace TacheConsole
 {
     internal class Program
     {
 
+
         static void Main(string[] args)
         {
-            TacheController _controller = new TacheController();
+            Environment.SetEnvironmentVariable("app", "console");
+            Console.WriteLine(Environment.GetEnvironmentVariable("app"));
+            ITacheRepo repo = new TacheRepo(); // nécessite une connexion valide
+            ICrud metier = new TacheMetier(repo);
+            TacheController _controller = new TacheController(metier);
             int choix = 1;
             Intro();
             do

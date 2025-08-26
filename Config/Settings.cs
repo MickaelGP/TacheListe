@@ -10,16 +10,30 @@ namespace TacheConsole.Config
     public class Settings
     {
         public string DbConnectionString { get; set; }
+        public string DbConnectionStringTest { get; set; }
 
         public string GetDbString()
         {
-            var binder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
-
-            IConfiguration configuration = binder.Build();
-
-            var SettingInfoDb = configuration.GetSection("Settings").Get<Settings>();
+            IConfigurationRoot config = new ConfigurationBuilder()
+                    .AddJsonFile("appsettings.json")
+                    .AddEnvironmentVariables()
+                    .Build();
+            var SettingInfoDb = config.GetSection("Settings").Get<Settings>();
 
             string ConnectionString = SettingInfoDb.DbConnectionString;
+
+            return ConnectionString;
+        }
+
+        public string GetDbStringTest()
+        {
+            IConfigurationRoot config = new ConfigurationBuilder()
+                    .AddJsonFile("appsettings.json")
+                    .AddEnvironmentVariables()
+                    .Build();
+            var SettingInfoDb = config.GetSection("SettingsTest").Get<Settings>();
+
+            string ConnectionString = SettingInfoDb.DbConnectionStringTest;
 
             return ConnectionString;
         }

@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TacheConsole.Interfaces;
+﻿using TacheConsole.Interfaces;
 using TacheConsole.Models;
-using TacheConsole.Repository;
 
 namespace TacheConsole.Metier
 {
     public class TacheMetier : ICrud
     {
-        private TacheRepo _repo = new TacheRepo();
-
+        private ITacheRepo _repo;
+        public TacheMetier(ITacheRepo repo)
+        {
+            _repo = repo;
+        }
         public int DeleteTask(int unId)
         {
             int resultat = _repo.DeleteTask(unId);
@@ -46,14 +43,18 @@ namespace TacheConsole.Metier
             uneTache.tacheCreation = DateTime.Now;
 
             int resultat = _repo.InsertTask(uneTache);
+            if(resultat == 0)
+            {
+                return 0;
+            }
 
             return resultat;
         }
 
-        public int UpdateTask(int unId)
+        public int UpdateTask(Taches unTache)
         {
             DateTime unDate = DateTime.Now;
-            int resultat = _repo.UpdateTask(unId, unDate);
+            int resultat = _repo.UpdateTask(unTache);
 
             return resultat;
         }

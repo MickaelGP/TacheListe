@@ -12,10 +12,13 @@ namespace TacheConsole
         static void Main(string[] args)
         {
             Environment.SetEnvironmentVariable("app", "console");
-            Console.WriteLine(Environment.GetEnvironmentVariable("app"));
-            ITacheRepo repo = new TacheRepo(); // nécessite une connexion valide
+
+            ITacheRepo repo = new TacheRepo();
+
             ICrud metier = new TacheMetier(repo);
+
             TacheController _controller = new TacheController(metier);
+
             int choix = 1;
             Intro();
             do

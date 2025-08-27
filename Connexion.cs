@@ -19,15 +19,7 @@ namespace TacheConsole
 
         public Connexion()
         {
-            if (Environment.GetEnvironmentVariable("app") != "console")
-            {
-                ConnexionString = _settings.GetDbStringTest();
-            }
-            else
-            {
-                ConnexionString = _settings.GetDbString();
-
-            }
+            ConnexionString = _settings.GetDbString();
         }
 
         protected void DbConnecter()
@@ -48,10 +40,5 @@ namespace TacheConsole
 
             _connexion.Open();
         }
-        //public  bool RuningTest()
-        //{
-        //    return AppDomain.CurrentDomain.GetAssemblies()
-        //        .Any(a => a.FullName.ToLowerInvariant().Contains("nunit.framework"));
-        //}
     }
 }

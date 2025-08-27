@@ -14,26 +14,22 @@ namespace TacheConsole.Config
 
         public string GetDbString()
         {
+            string ConnectionString;
             IConfigurationRoot config = new ConfigurationBuilder()
                     .AddJsonFile("appsettings.json")
                     .AddEnvironmentVariables()
                     .Build();
+
             var SettingInfoDb = config.GetSection("Settings").Get<Settings>();
 
-            string ConnectionString = SettingInfoDb.DbConnectionString;
-
-            return ConnectionString;
-        }
-
-        public string GetDbStringTest()
-        {
-            IConfigurationRoot config = new ConfigurationBuilder()
-                    .AddJsonFile("appsettings.json")
-                    .AddEnvironmentVariables()
-                    .Build();
-            var SettingInfoDb = config.GetSection("SettingsTest").Get<Settings>();
-
-            string ConnectionString = SettingInfoDb.DbConnectionStringTest;
+            if(Environment.GetEnvironmentVariable("app") != "console")
+            {
+                ConnectionString = SettingInfoDb.DbConnectionStringTest;
+            }
+            else
+            {
+                ConnectionString = SettingInfoDb.DbConnectionString;
+            }
 
             return ConnectionString;
         }

@@ -24,4 +24,8 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include=".github\workflows\deploy-image.yml" />
+  </ItemGroup>
+
 </Project>

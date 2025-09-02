@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TacheConsole": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

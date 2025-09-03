@@ -19,7 +19,7 @@ namespace TacheConsole
 
             TacheController _controller = new TacheController(metier);
 
-            int choix = -1;
+            int choix = -2;
             Intro();
             do
             {

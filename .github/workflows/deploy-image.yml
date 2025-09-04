@@ -1,6 +1,5 @@
 ﻿name: Build and Publish Docker Image
 
-# 🔁 Déclenche le workflow à chaque nouvelle release GitHub
 on:
   release:
     types: [published]
